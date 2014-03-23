@@ -15,7 +15,7 @@ type Smail struct {
 
 
 /*
-	Makes a new Smail object with the given
+	Makes a new Smail object with the given server, port, account username and password.
 */
 func NewSmail(server, port, username, password string) (*Smail, error) {
 	//make sure parameters given were not empty
@@ -51,7 +51,7 @@ func (s *Smail) SendPlaintextEmail(recipients *AddrList, subject string, body st
 
 /*
 	Sends an HTML email to the specified recipient email adress(es), with the given subject and body.
-	NOTE: it is assumend that the given email adresses ware valid.
+	NOTE: it is assumend that the given email adresses are valid.
 */
 func (s *Smail) SendHTMLEmail(recipients *AddrList, subject string, body string) error {
 
@@ -146,12 +146,14 @@ func NewAddrListFromSlice(slice []string) *AddrList {
 	Adds a single address to the AddrList
 */
 func (al *AddrList) AddAddress(address string) {
+	//append the address to the slice
 	al.slice = append(al.slice, address)
 
+	//if there is a previous address, append a comma and a space
 	if al.csv != "" {
 		al.csv += ", "
 	}
-
+	// then append the new address to the comma-seperated string
 	al.csv += address
 }
 
@@ -159,6 +161,7 @@ func (al *AddrList) AddAddress(address string) {
 	Adds multiple addresses to the AddrList
 */
 func (al *AddrList) AddAddresses(addresses []string) {
+	//append all the addresses to the slice
 	al.slice = append(al.slice, addresses...)
 
 	//re-build the comma-seperated string of addresses
@@ -187,6 +190,7 @@ func (al *AddrList) RemoveAddress(address string) {
 */
 func (al *AddrList) RemoveAddresses(addresses []string) {
 
+	//go through each given address to remove, and attempt to remove them from the AddrList's internal slice
 	for _, v := range addresses {
 		al.slice = removeStringFromSlice(v, al.slice)
 	}
