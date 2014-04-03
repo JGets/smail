@@ -31,6 +31,12 @@ import(
 	"errors"
 )
 
+var(
+	ErrNoServer = errors.New("No server specified")
+	ErrNoPort = errors.New("No port specified")
+	ErrNoUsername = errors.New("No username specified")
+	ErrNoPassword = errors.New("No password specified")
+)
 
 type Smail struct {
 	username_ string
@@ -44,10 +50,10 @@ type Smail struct {
 */
 func NewSmail(server, port, username, password string) (*Smail, error) {
 	//make sure parameters given were not empty
-	if server == "" { return nil, errors.New("No server specified") }
-	if port == "" { return nil, errors.New("No port specified") }
-	if username == "" { return nil, errors.New("No username specified") }
-	if password == "" { return nil, errors.New("No password specified") }
+	if server == "" { return nil, ErrNoServer }
+	if port == "" { return nil, ErrNoPort }
+	if username == "" { return nil, ErrNoUsername }
+	if password == "" { return nil, ErrNoPassword }
 
 	//make a PlainAuth object
 	auth := smtp.PlainAuth("", username, password, server)
