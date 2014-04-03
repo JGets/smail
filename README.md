@@ -39,7 +39,7 @@ Makes a new `Smail` object for the given smtp `server` address, using `port`, fo
 ````
 func (s *Smail) SendPlaintextEmail(recipients *AddrList, subject string, body string) error
 ````
-Sends a plaintext email to the specified recipient email adress(es), with the given subject and body.
+Sends a plaintext email to the specified recipient email adress(es), with the given subject and body.<br/>
 **NOTE:** it is assumed that the given email adresses are valid.
 
 
@@ -47,7 +47,7 @@ Sends a plaintext email to the specified recipient email adress(es), with the gi
 ````
 func (s *Smail) SendHTMLEmail(recipients *AddrList, subject string, body string) error
 ````
-Sends an HTML email to the specified recipient email adress(es), with the given subject and body.
+Sends an HTML email to the specified recipient email adress(es), with the given subject and body.<br/>
 **NOTE:** it is assumend that the given email adresses are valid.
 
 
@@ -58,7 +58,7 @@ type AddrList struct {
 }
 ````
 
-####func NewAddreList
+####func NewAddrList
 ````
 func NewAddrList() *AddrList
 ````
@@ -97,7 +97,7 @@ Adds all the email addresses in `addresses` to the AddrList `al`.
 ````
 func (al *AddrList) RemoveAddress(address string)
 ````
-Removes a single address from the AddrList. If the address is not in the AddrList, does nothing.
+Removes a single address from the AddrList. If the address is not in the AddrList, does nothing.<br/>
 **Complexity:** Worst Case: O(n), where n = # of addresses already in the list.
 
 
@@ -105,7 +105,7 @@ Removes a single address from the AddrList. If the address is not in the AddrLis
 ````
 func (al *AddrList) RemoveAddresses(addresses []string)
 ````
-Removes multiple addresses from the AddrList. If not all addresses given exist in the AddrList, it will only remove those that do.
+Removes multiple addresses from the AddrList. If not all addresses given exist in the AddrList, it will only remove those that do.<br/>
 **Complexity:** Worst Case: O(kn), where k = # of addresses given to remove, n = # of adresses in the list.
 
 
