@@ -250,7 +250,7 @@ func removeStringFromSlice(str string, slice []string) []string {
 }
 
 /*
-	Predicate function to check if an AddrList is empty (ie. it contains to addresses)
+	Predicate function to check if an AddrList is empty (ie. it contains no addresses)
 */
 func (al *AddrList) Empty() bool {
 	return len(al.slice) == 0 && al.csv == ""

@@ -113,7 +113,7 @@ Removes multiple addresses from the AddrList. If not all addresses given exist i
 ````
 func (al *AddrList) Empty() bool
 ````
-Predicate function to check if an AddrList is empty (ie. it contains to addresses).
+Predicate function to check if an AddrList is empty (ie. it contains no addresses).
 
 
 ####func (*AddrList) String
