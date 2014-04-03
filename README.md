@@ -4,10 +4,35 @@ import "github.com/JGets/smail"
 ````
 
 ##About
-Smail is meant to be a small package designed to simplify sending emails in Go.
+Smail is meant to be a small package designed to simplify sending emails in Go.<br/>
+Smail is **not** an email server. It is only a simple interface wrapper around Go's [net/smtp](http://golang.org/pkg/net/smtp/) package.
 
 ##Usage
-......
+Creating a new `Smail` object is relatively simple, just use the `NewSmail` function like so:
+````
+emailer, err := smail.NewSmail("smtp.gmail.com", "587", "myAddress@gmail.com", "MyPassword123")
+if err != nil {
+	//do some error handling here
+}
+````
+In this exsample, we are using the GMail account myAddress as the **outgoing** email address. That is, `emailer` will be sending emails from `myAddress@gmail.com`.
+
+To send an email, we can either send a simple plaintext email, or a rich-text HTML email:
+````
+err = emailer.SendPlaintextEmail(smail.NewAddrListFromString("someone@email.com, myFriend@gmail.com"), "Hello There", "This is a simple plaintext email")
+if err != nil {
+	//do some error handling
+}
+
+
+htmlBody := "<!DOCTYPE html><html><head></head><body><h1>Hello There!</h1><p>This is an HTML email</p></body></html>"
+
+err = emailer.SendHTMLEmail(smail.NewAddrListFromSlice([]string{"someone@email.com", "myFriend@gmail.com"}), "Hello There in HTML!", htmlBody)
+if err != nil {
+	//do some error handling
+}
+
+````
 
 ##Documentation
 ###Variables
